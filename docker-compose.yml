@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    ports:
+      - 15672:15672
+
+  storage:
+    build: storage/
+    ports:
+      - 4300:4300
+    volumes:
+      - /mnt:/storage/files
+
+  site:
+    build: ./
+    ports:
+      - 8000:8000
+    links:
+      - "storage:storage"
+      - "rabbitmq:rabbitmq"
+      - "db:db"
+    depends_on:
+      - rabbitmq
+
+  ml:
+    build: ml/
+    #deploy:
+    #  mode: replicated
+    #  replicas: 2
+    links:
+      - "rabbitmq:rabbitmq"
+    volumes:
+      - /mnt:/ml/media
+    depends_on:
+      - site
+
+  db:
+    build: database/
+    ports:
+      - 5300:5300
+    volumes:
+      - /mnt:/db

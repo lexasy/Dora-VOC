@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/video1.css') }}">
+    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="logo">GPK-IT</div>
+        <nav>
+            <ul>
+                <li><a href="{{ close }}">Close request</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <!--<li><a href="/start">Upload</a></li>-->
+                <!-- <li><a href="#">Registration</a></li>
+                <li><a href="#">Login</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+        <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="800"
+            height="450"
+            data-setup="{}"
+        >
+        
+            <source src="{{ final_path }}" type="video/mp4"/>
+        </video>
+        <a href="{{ final_path }}" download="{{ final_path }}">Download file</a>
+        <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="800"
+            height="450"
+            data-setup="{}"
+        >
+        
+            <source src="{{ rgb_path }}" type="video/mp4"/>
+        </video>
+        <a href="{{ rgb_path }}" download="{{ rgb_path }}">Download file</a>
+        <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="800"
+            height="450"
+            data-setup="{}"
+        >
+        
+            <source src="{{ depth_path }}" type="video/mp4"/>
+        </video>
+        <a href="{{ depth_path }}" download type="video/mp4">Download file</a>
+        <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+        <!--<a href="{{ close }}">Close request</a>-->
+    </main>
+</body>
+</html>
